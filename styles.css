@@ -1,0 +1,918 @@
+/* ==========================================================================
+   MAROON by Renggali — Digital Design Concept Book
+   Editorial Wayfinding & Residential Branding Presentation
+   ========================================================================== */
+
+:root {
+  --bg-white: #FFFFFF;
+  --bg-ivory: #F7F4EE;
+  --bg-stone: #ECE8E0;
+  --bg-maroon: #4E0E14;
+  --bg-maroon-deep: #38090D;
+  --bg-burgundy: #6E141B;
+  --bg-charcoal: #1E1E20;
+
+  --accent-gold: #C89B4B;
+  --accent-gold-soft: rgba(200, 155, 75, 0.22);
+
+  --text-dark: #1B1B1D;
+  --text-body: #4A4A50;
+  --text-muted: #76767E;
+  --text-ivory: #F4EFE6;
+  --text-ivory-soft: rgba(244, 239, 230, 0.78);
+
+  --border-light: rgba(27, 27, 29, 0.12);
+  --border-dark: rgba(244, 239, 230, 0.18);
+
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  --container-max: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-dark);
+  background: var(--bg-white);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Top Minimal Navigation ---------- */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem var(--gutter);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light);
+  transition: transform 0.3s ease;
+}
+
+.top-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+.top-brand img {
+  height: 28px;
+  width: auto;
+}
+
+.top-brand span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.48rem 1rem;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border-light);
+  background: var(--bg-white);
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-pill:hover {
+  border-color: var(--bg-maroon);
+  color: var(--bg-maroon);
+}
+
+.btn-pill.primary {
+  background: var(--bg-maroon);
+  color: var(--text-ivory);
+  border-color: var(--bg-maroon);
+}
+
+.btn-pill.primary:hover {
+  background: var(--bg-burgundy);
+}
+
+/* ---------- Chapter Index Drawer ---------- */
+.chapter-drawer {
+  position: fixed;
+  top: 62px;
+  right: var(--gutter);
+  z-index: 99;
+  width: min(340px, calc(100vw - 2rem));
+  max-height: 75vh;
+  overflow-y: auto;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14);
+  padding: 1rem;
+  display: none;
+}
+
+.chapter-drawer.open {
+  display: block;
+}
+
+.chapter-drawer h4 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.chapter-list {
+  list-style: none;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.chapter-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+
+.chapter-list a:hover {
+  background: var(--bg-ivory);
+  color: var(--bg-maroon);
+}
+
+.chapter-list .ch-code {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--bg-maroon);
+  min-width: 1.25rem;
+}
+
+/* ---------- Hero Section ---------- */
+.hero {
+  padding-top: 62px;
+  background: var(--bg-white);
+}
+
+.hero-editorial {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: clamp(3.5rem, 7vw, 6rem) var(--gutter) clamp(2.5rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: end;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bg-maroon);
+  margin-bottom: 1.5rem;
+}
+
+.hero-kicker::before {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: var(--accent-gold);
+}
+
+.hero-logo-lockup {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.hero-logo-lockup img {
+  height: clamp(64px, 8vw, 96px);
+  width: auto;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 400;
+  color: var(--text-body);
+  margin-top: 1.25rem;
+  max-width: 46ch;
+}
+
+.hero-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.meta-item label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.meta-item span {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.hero-visual-wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) clamp(3rem, 6vw, 5rem);
+}
+
+.hero-visual-frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-stone);
+  aspect-ratio: 16 / 9;
+}
+
+.hero-visual-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visual-caption-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.9rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Pamulang-Inspired Editorial Band ---------- */
+.band {
+  padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+  position: relative;
+}
+
+.band--light {
+  background: var(--bg-white);
+  color: var(--text-dark);
+}
+
+.band--ivory {
+  background: var(--bg-ivory);
+  color: var(--text-dark);
+}
+
+.band--dark {
+  background: var(--bg-maroon);
+  color: var(--text-ivory);
+}
+
+.band--charcoal {
+  background: var(--bg-charcoal);
+  color: var(--text-ivory);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.editorial-header {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.arrow-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  opacity: 0.85;
+}
+
+.band--dark .arrow-badge,
+.band--charcoal .arrow-badge {
+  border-color: rgba(244, 239, 230, 0.45);
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.65rem;
+}
+
+.band--light .section-tag,
+.band--ivory .section-tag {
+  color: var(--bg-maroon);
+}
+
+.editorial-title {
+  font-size: clamp(2.1rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.editorial-copy {
+  display: grid;
+  gap: 1.15rem;
+  padding-top: 0.4rem;
+}
+
+.editorial-copy p {
+  font-size: 0.98rem;
+  line-height: 1.72;
+  max-width: 58ch;
+}
+
+.band--light .editorial-copy p,
+.band--ivory .editorial-copy p {
+  color: var(--text-body);
+}
+
+.band--dark .editorial-copy p,
+.band--charcoal .editorial-copy p {
+  color: var(--text-ivory-soft);
+}
+
+.editorial-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.78rem;
+  opacity: 0.72;
+}
+
+.band--dark .editorial-footer,
+.band--charcoal .editorial-footer {
+  border-top-color: var(--border-dark);
+}
+
+/* ---------- Draft / Conceptual Notice ---------- */
+.draft-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: var(--accent-gold-soft);
+  color: #8A621C;
+  border: 1px solid rgba(200, 155, 75, 0.4);
+}
+
+.band--dark .draft-pill,
+.band--charcoal .draft-pill {
+  color: #E7C37E;
+}
+
+/* ---------- Philosophy & Principles Grid ---------- */
+.principles-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.principle-item {
+  padding: 1.25rem 1rem;
+  border-top: 2px solid var(--bg-maroon);
+  background: var(--bg-ivory);
+}
+
+.principle-item span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+}
+
+.principle-item strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+}
+
+.principle-item p {
+  font-size: 0.8rem;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+
+/* ---------- Visual Frames & Mockups ---------- */
+.visual-frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-stone);
+  position: relative;
+}
+
+.visual-frame img {
+  width: 100%;
+  height: auto;
+  cursor: zoom-in;
+  transition: transform 0.4s ease;
+}
+
+.visual-frame:hover img {
+  transform: scale(1.012);
+}
+
+.mockup-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.mockup-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.mockup-caption {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.mockup-caption strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.mockup-caption span {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+/* ---------- Color & Material Palette ---------- */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.color-swatch {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  background: var(--bg-white);
+}
+
+.color-chip {
+  height: 130px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.85rem;
+}
+
+.color-chip span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+.color-info {
+  padding: 0.9rem 1rem;
+}
+
+.color-info strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.color-info code {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.material-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  background: var(--bg-white);
+}
+
+.material-texture {
+  height: 110px;
+  width: 100%;
+}
+
+.tex-gabion {
+  background:
+    radial-gradient(circle at 20% 30%, #6c6c70 12%, transparent 13%),
+    radial-gradient(circle at 55% 25%, #55555a 14%, transparent 15%),
+    radial-gradient(circle at 80% 60%, #78787d 13%, transparent 14%),
+    radial-gradient(circle at 35% 75%, #4b4b4f 15%, transparent 16%),
+    repeating-linear-gradient(0deg, rgba(220,220,225,0.35) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(90deg, rgba(220,220,225,0.35) 0 1px, transparent 1px 22px),
+    #3f4044;
+}
+
+.tex-metal {
+  background: linear-gradient(135deg, #5C0B10 0%, #42070C 60%, #520A10 100%);
+}
+
+.tex-stone {
+  background:
+    linear-gradient(120deg, rgba(255,255,255,0.08) 25%, transparent 25%),
+    linear-gradient(240deg, rgba(0,0,0,0.08) 25%, transparent 25%),
+    #7A7976;
+}
+
+.tex-concrete {
+  background:
+    radial-gradient(circle at 30% 40%, rgba(0,0,0,0.04) 0%, transparent 40%),
+    linear-gradient(160deg, #D8D5CE 0%, #C7C3BA 100%);
+}
+
+.tex-wood {
+  background:
+    repeating-linear-gradient(90deg, rgba(80,45,20,0.08) 0 3px, transparent 3px 9px),
+    linear-gradient(180deg, #B58352 0%, #96663B 100%);
+}
+
+.material-info {
+  padding: 0.9rem 1rem;
+}
+
+.material-info strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.material-info p {
+  font-size: 0.76rem;
+  color: var(--text-body);
+  line-height: 1.45;
+}
+
+/* ---------- Pictogram System Grid ---------- */
+.pictogram-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+}
+
+.pictogram-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.pictogram-box {
+  width: 112px;
+  height: 112px;
+  border-radius: 18px;
+  border: 1.5px solid rgba(244, 239, 230, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pictogram-tile:hover .pictogram-box {
+  transform: translateY(-3px);
+  border-color: var(--accent-gold);
+}
+
+.pictogram-tile span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-ivory);
+}
+
+.pictogram-tile small {
+  font-size: 0.72rem;
+  color: var(--text-ivory-soft);
+  display: block;
+  margin-top: -0.55rem;
+}
+
+/* ---------- Typography Specimen ---------- */
+.type-specimen-wrap {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.type-weights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.type-weights div {
+  font-size: 1.65rem;
+  line-height: 1.2;
+}
+
+.type-table {
+  border-top: 1px solid var(--border-dark);
+}
+
+.type-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.5rem;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--border-dark);
+  align-items: center;
+}
+
+.type-row label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+}
+
+.type-row .glyphs {
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  letter-spacing: 0.14em;
+  line-height: 1.6;
+}
+
+.type-hierarchy-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-dark);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.type-hierarchy-box small {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-gold);
+  margin-bottom: 0.35rem;
+}
+
+/* ---------- Technical SVG Containers ---------- */
+.diagram-board {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.band--ivory .diagram-board {
+  background: var(--bg-white);
+}
+
+.diagram-board svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Spec Strip (Design Meets Dimensions) ---------- */
+.spec-strip {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.spec-block h5 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  margin-bottom: 0.35rem;
+}
+
+.spec-block p {
+  font-size: 0.84rem;
+  color: var(--text-ivory);
+  line-height: 1.5;
+}
+
+/* ---------- Lightbox Modal ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(15, 15, 17, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 86vh;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .hero-editorial,
+  .editorial-header,
+  .type-specimen-wrap {
+    grid-template-columns: 1fr;
+  }
+  .principles-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .palette-grid,
+  .material-grid,
+  .pictogram-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .mockup-grid-2,
+  .mockup-grid-3,
+  .type-hierarchy-box {
+    grid-template-columns: 1fr;
+  }
+  .principles-row,
+  .palette-grid,
+  .material-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pictogram-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .top-brand span {
+    display: none;
+  }
+}
+
+/* ---------- Print Stylesheet (HTML FIRST — PDF SECOND) ---------- */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .top-bar,
+  .chapter-drawer,
+  .lightbox {
+    display: none !important;
+  }
+
+  .hero {
+    padding-top: 0;
+  }
+
+  .band {
+    padding: 2.5rem 0;
+    break-inside: avoid-page;
+  }
+
+  .visual-frame,
+  .diagram-board,
+  .palette-grid,
+  .material-grid,
+  .pictogram-grid {
+    break-inside: avoid;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+}
